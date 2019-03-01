@@ -2,6 +2,7 @@
 import math
 import random
 import re
+from collections import Counter
 
 def date_enter():
     global list5
@@ -39,6 +40,7 @@ def main():
         print("\n [6] - Normal 3: Список из произвольных чисел")
         print("\n [7] - Hard 1: Статистика по тексту")
         print("\n [8] - Hard 2: Разница между текстами")
+        print("\n [9] - Extra: Словари с продуктами")
         print("\n [Q] - Выход")
         answer = input("\n Какое задачу выбираешь? ")
 
@@ -159,6 +161,31 @@ def main():
 
             input("\n Введите любой символ для продолжения...")
 
+        elif answer == "9":  # Extra
+            print("\n Extra: Словари с продуктами")
+
+            receipt = Counter({"яблоко":5, "лук":1, "утка":1, "капуста":1, "масло":1, "чеснок":1, "соль":20, "перец":20, "морковь":2, "мед":50})
+            fridge = Counter({"яблоко":1, "капуста":1, "масло":1, "чеснок":1, "соль":20, "перец":20, "морковь":2})
+            k = 0
+
+            print("\n Для запеченой утки требуется:")
+            for i in receipt:
+                print("\n", i, receipt[i])
+            print("\n У Вас в холодильнике:")
+            for i in fridge:
+                    print("\n", i, fridge[i])
+
+            print("\n Это список продуктов для покупки")
+            receipt.subtract(fridge)
+            for i in receipt:
+                if receipt[i] > 0:
+                    print("\n", i, receipt[i])
+                    k += 1
+            if k == 0:
+                print("\n Все продукты в холодильнике, ничего покупать не нужно")
+
+
+            input("\n Введите любой символ для продолжения...")
 
         else:
             print("\n Неизвестный ответ")
